@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="用 Three.js 交互式三维动画讲解光纤的结构、全反射导光原理、模式与色散、损耗，以及光信号从发送到接收的完整传输过程。" />
+    <title>光纤通信原理</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230071e3'/%3E%3Cpath d='M5 21c6-10 16 0 22-10' stroke='white' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E" />
+    <script>
+      try {
+        const t = localStorage.getItem('fiber-theme');
+        const dark = t ? t === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+        if (dark) document.documentElement.dataset.theme = 'dark';
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <div id="app">
+      <header class="topbar">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 32 32" width="26" height="26"><rect width="32" height="32" rx="8" fill="currentColor" /><path d="M5 21c6-10 16 0 22-10" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" /></svg>
+          </span>
+          <span class="brand-name">光纤通信原理</span>
+          <span class="brand-sub">三维交互演示</span>
+        </div>
+        <div class="topbar-right">
+          <span class="progress tabular" id="progress">1 / 8</span>
+          <button class="icon-btn" id="themeBtn" title="切换深色 / 浅色" aria-label="切换深色或浅色模式">
+            <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" /></svg>
+          </button>
+        </div>
+      </header>
+
+      <div class="layout">
+        <nav class="sidebar" id="nav" aria-label="章节"></nav>
+
+        <main class="stage-wrap">
+          <div class="stage" id="stage">
+            <canvas id="gl"></canvas>
+            <div class="stage-head">
+              <span class="stage-num tabular" id="stageNum">01</span>
+              <span class="stage-title" id="stageTitle"></span>
+            </div>
+            <div class="stage-tools" id="stageTools"></div>
+            <div class="stage-hint">拖动旋转 · 滚轮缩放 · 右键平移</div>
+            <div class="stage-loading" id="loading"><div class="spinner"></div></div>
+          </div>
+        </main>
+
+        <aside class="panel" id="panel" aria-live="polite"></aside>
+      </div>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
